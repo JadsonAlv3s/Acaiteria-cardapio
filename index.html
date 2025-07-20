@@ -60,6 +60,10 @@
             /* Ajuda a quebrar palavras longas */
             hyphens: auto;
             /* Ajuda na hifenização para quebrar palavras */
+            white-space: normal;
+            /* Garante que o texto quebre linha */
+            text-wrap: balance;
+            /* Tenta equilibrar as linhas de texto (funcionalidade mais nova) */
         }
 
         .menu-section-heading {
@@ -200,13 +204,37 @@
             font-size: 1.3rem;
         }
 
+        /* ** Estilos para a Logo ** */
+        .logo-container {
+            text-align: center;
+            /* Centraliza a imagem */
+            margin-bottom: 40px;
+            /* Espaço abaixo da logo */
+        }
+
+        .menu-logo {
+            max-width: 250px;
+            /* Tamanho padrão para telas maiores */
+            height: auto;
+            display: block;
+            /* Garante que 'margin: auto' funcione */
+            margin: 0 auto;
+            /* Centraliza a imagem se não estiver em flexbox */
+        }
+
+
         /* ** Media Queries para Responsividade ** */
         @media (max-width: 992px) {
 
             /* Para tablets e telas menores que desktop */
             .menu-title {
-                font-size: 3rem;
+                font-size: 2.8rem;
                 /* Um pouco menor */
+            }
+
+            .menu-logo {
+                max-width: 200px;
+                /* Reduz o tamanho da logo */
             }
         }
 
@@ -214,24 +242,12 @@
 
             /* Para a maioria dos celulares e tablets pequenos */
             .menu-title {
-
+                font-size: 1.9rem;
                 /* Reduzido para encaixar melhor */
-                line-height: 1.2;
-                color: var(--menu-purple-dark);
-                font-weight: 900;
-                font-size: 3.5rem;
-                /* Tamanho padrão para telas maiores */
-                text-align: center;
-                margin-bottom: 40px;
-                text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-                word-break: break-word;
-                /* Ajuda a quebrar palavras longas */
-                hyphens: auto;
-                /* Ajuda na hifenização para quebrar palavras */
-                white-space: normal;
-                /* Garante que o texto quebre linha */
-                text-wrap: balance;
-                /* Tenta equilibrar as linhas de texto (funcionalidade mais nova) */
+                line-height: 1.25;
+                /* Ajuste no espaçamento entre linhas */
+                padding: 0 8px;
+                /* Adiciona um pequeno padding horizontal para respiro */
             }
 
             .menu-section-heading {
@@ -253,22 +269,32 @@
             .item-card .item-price {
                 font-size: 0.95rem;
             }
+
+            .menu-logo {
+                max-width: 150px;
+                /* Reduz ainda mais a logo para celulares */
+            }
         }
 
         @media (max-width: 576px) {
 
             /* Para celulares menores (modo retrato) */
             .menu-title {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
                 /* Ainda menor para telas muito estreitas */
-                padding: 0 10px;
-                /* Adiciona um pequeno padding horizontal para não "colar" nas bordas */
                 line-height: 1.3;
+                padding: 0 5px;
+                /* Reduz o padding para maximizar o espaço */
             }
 
             .menu-container {
-                padding: 20px 15px;
+                padding: 20px 10px;
                 /* Reduz o padding do container em telas muito pequenas */
+            }
+
+            .menu-logo {
+                max-width: 100px;
+                /* Logo bem pequena em telas muito estreitas */
             }
         }
     </style>
@@ -276,7 +302,9 @@
 
 <body>
     <div class="container menu-container">
-        <h1 class="menu-title">🍦🍦 Açaiteria Fino Sabor - Cardápio! 💜❤️</h1>
+        <div class="logo-container">
+            <img src="Logosemfundo1.png" alt="Logo Açaiteria Fino Sabor" class="menu-logo">
+        </div>
 
         <h2 class="menu-section-heading">Monte Seu Açaí</h2>
         <p class="text-center item-description">Escolha o tamanho e personalize com nossos cremes e recheios exclusivos!
