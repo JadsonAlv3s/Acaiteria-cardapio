@@ -47,13 +47,16 @@
             margin-bottom: 50px;
         }
 
+        /* Estilos para o título principal */
         .menu-title {
             color: var(--menu-purple-dark);
             font-weight: 900;
-            font-size: 3.5rem;
+            font-size: 3.5rem; /* Tamanho padrão para telas maiores */
             text-align: center;
             margin-bottom: 40px;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            word-break: break-word; /* Ajuda a quebrar palavras longas */
+            hyphens: auto; /* Ajuda na hifenização para quebrar palavras */
         }
 
         .menu-section-heading {
@@ -98,7 +101,8 @@
 
         /* Estilo para Açaí por KG */
         .acai-kg {
-            background-color: var(--paraense-red-dark); /* Fundo em vermelho escuro */
+            background-color: var(--paraense-red-dark);
+            /* Fundo em vermelho escuro */
             color: var(--text-light);
             border-radius: 12px;
             padding: 30px;
@@ -111,7 +115,8 @@
         .acai-kg .price-kg {
             font-size: 3rem;
             font-weight: 900;
-            color: var(--menu-purple-light); /* Preço em roxo claro */
+            color: var(--menu-purple-light);
+            /* Preço em roxo claro */
             margin-bottom: 10px;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
         }
@@ -143,11 +148,13 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
-        /* Estilo para Milkshake e Bebidas */
+        /* Estilo para Milkshake e Bebidas (novo layout em grid) */
         .item-category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Colunas flexíveis */
-            gap: 20px; /* Espaçamento entre os itens */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            /* Colunas flexíveis */
+            gap: 20px;
+            /* Espaçamento entre os itens */
             margin-bottom: 30px;
         }
 
@@ -171,11 +178,12 @@
 
         .item-card .item-name {
             font-weight: 700;
-            color: var(--menu-purple-medium); /* Nome do item em roxo médio */
+            color: var(--menu-purple-medium);
+            /* Nome do item em roxo médio */
             font-size: 1.25rem;
             margin-bottom: 8px;
         }
-        
+
         .item-card .item-description-small {
             font-size: 0.95rem;
             color: var(--text-dark);
@@ -184,14 +192,22 @@
 
         .item-card .item-price {
             font-weight: bold;
-            color: var(--paraense-red-main); /* Preço em vermelho vibrante */
+            color: var(--paraense-red-main);
+            /* Preço em vermelho vibrante */
             font-size: 1.3rem;
         }
 
-        /* Responsividade básica para textos */
-        @media (max-width: 768px) {
+        /* ** Media Queries para Responsividade ** */
+        @media (max-width: 992px) { /* Para tablets e telas menores que desktop */
             .menu-title {
-                font-size: 2.5rem;
+                font-size: 3rem; /* Um pouco menor */
+            }
+        }
+
+        @media (max-width: 768px) { /* Para a maioria dos celulares e tablets pequenos */
+            .menu-title {
+                font-size: 2.2rem; /* Reduzido para encaixar melhor */
+                line-height: 1.2; 
             }
             .menu-section-heading {
                 font-size: 1.8rem;
@@ -206,13 +222,24 @@
                 font-size: 0.95rem;
             }
         }
+
+        @media (max-width: 576px) { /* Para celulares menores (modo retrato) */
+            .menu-title {
+                font-size: 1.8rem; /* Ainda menor para telas muito estreitas */
+                padding: 0 10px; /* Adiciona um pequeno padding horizontal para não "colar" nas bordas */
+                line-height: 1.3;
+            }
+            .menu-container {
+                padding: 20px 15px; /* Reduz o padding do container em telas muito pequenas */
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="container menu-container">
-        <h1 class="menu-title">🍦❤️ Cardápio! 💜🍦</h1>
-        
+        <h1 class="menu-title">🍦🍦 Açaiteria Fino Sabor - Cardápio! 💜❤️</h1>
+
         <h2 class="menu-section-heading">Monte Seu Açaí</h2>
         <p class="text-center item-description">Escolha o tamanho e personalize com nossos cremes e recheios exclusivos!</p>
         <div class="row justify-content-center">
