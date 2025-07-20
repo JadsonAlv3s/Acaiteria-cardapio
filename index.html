@@ -1,283 +1,310 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Açaiteria Fino Sabor - Açaí e Sabores Tropicais!</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Cardápio Açaiteria Fino Sabor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
+        /* ** PALETA DE CORES ATUALIZADA ** */
+        :root {
+            --paraense-red-main: #E74C3C;
+            /* Vermelho vibrante principal */
+            --paraense-red-dark: #BD362F;
+            /* Vermelho mais escuro */
+            --menu-purple-dark: #5C2A7A;
+            /* Roxo escuro para fundos */
+            --menu-purple-medium: #8A3DAB;
+            /* Roxo médio para destaque */
+            --menu-purple-light: #C08EE6;
+            /* Roxo claro para detalhes */
+            --paraense-green-whatsapp: #2ECC71;
+            /* Verde do WhatsApp (para contraste se necessário) */
+            --text-light: #FFFFFF;
+            /* Texto claro */
+            --text-dark: #333333;
+            /* Texto escuro */
+            --background-light: #F8F8F8;
+            /* Fundo geral claro */
+        }
+
         body {
-            padding-top: 56px; /* Para compensar a navbar fixa */
-            font-family: 'Poppins', sans-serif; /* Fonte mais moderna e alegre */
-            background-color: #fcf8f0; /* Fundo suave, quase creme */
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            padding-top: 20px;
         }
-        .navbar-brand {
-            font-weight: bold;
-            font-size: 1.6rem;
-            color: #fff; /* Branco para o texto da marca */
-        }
-        .navbar-nav .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-        }
-        .navbar-nav .nav-link.active,
-        .navbar-nav .nav-link:hover {
-            color: #fff;
-        }
-        .bg-tropical-purple {
-            background-color: #6a0dad; /* Roxo vibrante do açaí */
-        }
-        .bg-tropical-green {
-            background-color: #3cb371; /* Verde vibrante */
-        }
-        .text-tropical-yellow {
-            color: #ffd700; /* Amarelo dourado */
-        }
-        .btn-tropical-purple {
-            background-color: #6a0dad;
-            border-color: #6a0dad;
-            color: white;
-        }
-        .btn-tropical-purple:hover {
-            background-color: #5a009d;
-            border-color: #5a009d;
-        }
-        .btn-tropical-green {
-            background-color: #3cb371;
-            border-color: #3cb371;
-            color: white;
-        }
-        .btn-tropical-green:hover {
-            background-color: #2e9c60;
-            border-color: #2e9c60;
-        }
-        .hero-section {
-            background: linear-gradient(rgba(106, 13, 173, 0.6), rgba(60, 179, 113, 0.6)), url('https://images.unsplash.com/photo-1596773229712-42111d441604?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
-            background-size: cover;
-            padding: 120px 0;
-            color: white;
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
-        }
-        .hero-section h1 {
-            font-size: 4.5rem;
-            margin-bottom: 25px;
-            font-weight: 900;
-        }
-        .hero-section p {
-            font-size: 1.8rem;
-            font-weight: 300;
-        }
-        .section-heading {
-            color: #6a0dad; /* Roxo vibrante para títulos */
-            margin-bottom: 50px;
-            font-weight: bold;
-        }
-        .card-img-top {
-            height: 220px;
-            object-fit: cover;
-            border-bottom: 5px solid #ffd700; /* Borda amarela chamativa */
-        }
-        .card {
-            border: none;
+
+        .menu-container {
+            background-color: var(--text-light);
             border-radius: 15px;
-            overflow: hidden;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            background-color: #ffffff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            padding: 40px;
+            margin-bottom: 50px;
         }
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+
+        .menu-title {
+            color: var(--menu-purple-dark);
+            font-weight: 900;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .carousel-item img {
-            height: 500px; /* Altura do carrossel na página principal */
-            object-fit: cover;
-            filter: brightness(0.85); /* Escurece um pouco para o texto aparecer melhor */
+
+        .menu-section-heading {
+            color: var(--paraense-red-main);
+            font-weight: bold;
+            font-size: 2.2rem;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 3px solid var(--menu-purple-light);
+            padding-bottom: 15px;
         }
-        .carousel-caption h5 {
+
+        /* Estilo para itens de açaí (Monte Seu Açaí) */
+        .acai-option {
+            background-color: var(--menu-purple-dark);
+            color: var(--text-light);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .acai-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .acai-option .price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            color: var(--paraense-red-main);
+        }
+
+        .acai-option .description {
+            font-size: 1.15rem;
+            line-height: 1.6;
+        }
+
+        /* Estilo para Açaí por KG */
+        .acai-kg {
+            background-color: var(--paraense-red-dark); /* Fundo em vermelho escuro */
+            color: var(--text-light);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .acai-kg .price-kg {
             font-size: 3rem;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+            font-weight: 900;
+            color: var(--menu-purple-light); /* Preço em roxo claro */
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .acai-kg .description-kg {
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+
+        /* Estilo para listas de cremes e recheios */
+        .options-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .options-list li {
+            background-color: var(--background-light);
+            border-radius: 8px;
+            padding: 10px 20px;
+            margin: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Estilo para Milkshake e Bebidas */
+        .item-category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Colunas flexíveis */
+            gap: 20px; /* Espaçamento entre os itens */
+            margin-bottom: 30px;
+        }
+
+        .item-card {
+            background-color: var(--background-light);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .item-card .item-name {
+            font-weight: 700;
+            color: var(--menu-purple-medium); /* Nome do item em roxo médio */
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+        
+        .item-card .item-description-small {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .item-card .item-price {
             font-weight: bold;
+            color: var(--paraense-red-main); /* Preço em vermelho vibrante */
+            font-size: 1.3rem;
         }
-        .carousel-caption p {
-            font-size: 1.5rem;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
-        }
-        .bg-light-tropical {
-            background-color: #e6ffe6; /* Verde bem clarinho */
-        }
-        .toast-header {
-            background-color: #ffd700 !important; /* Amarelo para o header do toast */
-            color: #6a0dad !important; /* Roxo para o texto do header */
-            font-weight: bold;
-        }
-        .toast-body {
-            color: #333;
+
+        /* Responsividade básica para textos */
+        @media (max-width: 768px) {
+            .menu-title {
+                font-size: 2.5rem;
+            }
+            .menu-section-heading {
+                font-size: 1.8rem;
+            }
+            .acai-option .price, .acai-kg .price-kg {
+                font-size: 2rem;
+            }
+            .acai-option .description, .acai-kg .description-kg {
+                font-size: 1rem;
+            }
+            .options-list li, .item-card .item-name, .item-card .item-price {
+                font-size: 0.95rem;
+            }
         }
     </style>
 </head>
+
 <body>
+    <div class="container menu-container">
+        <h1 class="menu-title">🍦 Açaiteria Fino Sabor - Cardápio! 💜❤️</h1>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-tropical-purple fixed-top shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">Açaiteria Fino Sabor</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#hero">Início</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#sabores">Nossos Sabores</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#quem-somos">Sobre Nós</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cardapio.html">Cardápio Completo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contato">Contato</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <main>
-        <section id="hero" class="hero-section d-flex align-items-center text-center">
-            <div class="container">
-                <h1 class="display-1 fw-bold">Açaiteria Fino Sabor</h1>
-                <p class="lead">A energia e o sabor do açaí, com um toque tropical que você só encontra aqui!</p>
-                <a href="#sabores" class="btn btn-tropical-green btn-lg mt-4 shadow-lg rounded-pill px-5 py-3">Explore Nossos Sabores!</a>
-            </div>
-        </section>
-
-        <section id="sabores" class="py-5 bg-light-tropical">
-            <div class="container">
-                <h2 class="text-center section-heading mb-5">Nossas Delícias Tropicais</h2>
-                <div id="saboresCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#saboresCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#saboresCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#saboresCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner rounded-4 shadow-lg">
-                        <div class="carousel-item active">
-                            <img src="https://images.unsplash.com/photo-1596773229712-42111d441604?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="Açaí Tradicional">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Açaí Tradicional com Frutas</h5>
-                                <p>Açaí puro, banana, morango e granola. Um clássico que nunca erra!</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://images.unsplash.com/photo-1551228256-f68285903960?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="Açaí com Leite Ninho">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Açaí com Leite Ninho e Nutella</h5>
-                                <p>A combinação perfeita de cremosidade e doçura para os amantes de Ninho.</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://images.unsplash.com/photo-1597405230238-89c099499898?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="Creme de Cupuaçu">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Creme de Cupuaçu com Castanhas</h5>
-                                <p>Experimente o sabor exótico da Amazônia em uma tigela refrescante.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#saboresCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Anterior</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#saboresCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Próximo</span>
-                    </button>
+        <h2 class="menu-section-heading">Monte Seu Açaí</h2>
+        <p class="text-center item-description">Escolha o tamanho e personalize com nossos cremes e recheios exclusivos!</p>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="acai-option">
+                    <div class="price">R$ 10,00</div>
+                    <p class="description">Base de Açaí + **2 Cremes** + **2 Recheios**</p>
                 </div>
             </div>
-        </section>
-
-        <section id="quem-somos" class="py-5">
-            <div class="container">
-                <h2 class="text-center section-heading mb-5">Nossa Essência Tropical</h2>
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <img src="https://images.unsplash.com/photo-1582236940081-36631481b238?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid rounded-4 shadow-lg" alt="Nossa Açaiteria">
-                    </div>
-                    <div class="col-md-6 mt-4 mt-md-0">
-                        <p class="lead">Na Açaiteria Fino Sabor, a paixão pelo açaí e pelos sabores do Brasil nos move!</p>
-                        <p>Desde 2021, nos dedicamos a trazer o açaí mais puro e os cremes de frutas mais exóticos, combinados com acompanhamentos frescos e deliciosos. Nosso objetivo é proporcionar uma experiência única de sabor e bem-estar, com um toque de alegria tropical em cada tigela.</p>
-                        <a href="cardapio.html" class="btn btn-outline-tropical-purple mt-3 rounded-pill px-4">Conheça Nosso Cardápio Completo</a>
-                    </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="acai-option">
+                    <div class="price">R$ 12,00</div>
+                    <p class="description">Base de Açaí + **2 Cremes** + **3 Recheios**</p>
                 </div>
             </div>
-        </section>
-
-        <div class="modal fade" id="modalContato" tabindex="-1" aria-labelledby="modalContatoLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content rounded-4">
-                    <div class="modal-header bg-tropical-purple text-white">
-                        <h5 class="modal-title" id="modalContatoLabel">Fale Conosco!</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="modalNome" class="form-label">Seu Nome</label>
-                                <input type="text" class="form-control" id="modalNome" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="modalEmail" class="form-label">Seu Email</label>
-                                <input type="email" class="form-control" id="modalEmail" placeholder="seuemail@exemplo.com" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="modalMensagem" class="form-label">Mensagem</label>
-                                <textarea class="form-control" id="modalMensagem" rows="3" placeholder="Sua mensagem..." required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-tropical-green w-100 rounded-pill">Enviar Mensagem</button>
-                        </form>
-                    </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="acai-option">
+                    <div class="price">R$ 15,00</div>
+                    <p class="description">Base de Açaí + **2 Cremes** + **4 Recheios**</p>
                 </div>
             </div>
         </div>
 
-    </main>
-
-    <footer class="bg-dark text-white text-center py-4 mt-5" id="contato">
-        <div class="container">
-            <p class="mb-2">Açaiteria Fino Sabor &copy; 2025. Todos os direitos reservados.</p>
-            <p class="mb-0">
-                Endereço: Praça desembargador Celso Sales, 328 - Centro |
-                Telefone: (XX) 9XXXX-XXXX |
-                <a href="#" class="text-tropical-yellow" data-bs-toggle="modal" data-bs-target="#modalContato">Envie uma mensagem</a>
-            </p>
+        <h2 class="menu-section-heading">Açaí por KG</h2>
+        <div class="acai-kg">
+            <div class="price-kg">R$ 49,99 / kg</div>
+            <p class="description-kg">Monte seu açaí no peso, com todos os cremes e recheios que desejar!</p>
         </div>
-    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const toastHtml = `
-                <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                    <div id="welcomeToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                        <div class="toast-header bg-tropical-green text-white">
-                            <strong class="me-auto"><i class="bi bi-tropical-storm"></i> Bem-vindo(a) à Fino Sabor!</strong>
-                            <small>Agora</small>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body">
-                            Prepare-se para uma explosão de sabores tropicais!
-                        </div>
-                    </div>
-                </div>
-            `;
-            document.body.insertAdjacentHTML('beforeend', toastHtml);
+        <h2 class="menu-section-heading">Nossos Cremes Disponíveis</h2>
+        <p class="text-center item-description">(Escolha até 2 por Açaí. Podem ser servidos puros também!)</p>
+        <ul class="options-list">
+            <li>Açaí Tradicional</li>
+            <li>Ovomaltine</li>
+            <li>Leite Ninho</li>
+            <li>Tapioca</li>
+            <li>Abacaxi</li>
+            <li>Menta</li>
+            <li>Cupuaçu</li>
+            <li>Cookies</li>
+            <li>Morango</li>
+        </ul>
 
-            const welcomeToast = document.getElementById('welcomeToast');
-            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(welcomeToast);
-            toastBootstrap.show();
-        });
-    </script>
+        <h2 class="menu-section-heading">Nossos Recheios Disponíveis</h2>
+        <p class="text-center item-description">(Escolha conforme o tamanho do seu Açaí)</p>
+        <ul class="options-list">
+            <li>Amendoim</li>
+            <li>Ovomaltine (em pó/crocante)</li>
+            <li>Banana Fini</li>
+            <li>Beijo Fini</li>
+            <li>Leite em Pó</li>
+            <li>M&Ms</li>
+            <li>Gotas de Chocolate</li>
+            <li>Granola</li>
+            <li>Coco Ralado</li>
+        </ul>
+        <p class="text-center item-description small">(Adicionais extras além do limite podem ser cobrados à parte.)</p>
+
+        <h2 class="menu-section-heading">Milkshakes</h2>
+        <div class="item-category-grid">
+            <div class="item-card">
+                <span class="item-name">MilkShake</span>
+                <p class="item-description-small">Sabores: Chocolate, Morango, Baunilha</p>
+                <span class="item-price">R$ 12,00</span>
+            </div>
+        </div>
+
+        <h2 class="menu-section-heading">Bebidas Refrescantes</h2>
+        <div class="item-category-grid">
+            <div class="item-card">
+                <span class="item-name">Água Mineral sem Gás</span>
+                <span class="item-price">R$ 2,00</span>
+            </div>
+            <div class="item-card">
+                <span class="item-name">Água Mineral com Gás</span>
+                <span class="item-price">R$ 3,50</span>
+            </div>
+            <div class="item-card">
+                <span class="item-name">Sucos Naturais</span>
+                <p class="item-description-small">(Laranja, Abacaxi)</p>
+                <span class="item-price">R$ 8,00</span>
+            </div>
+            <div class="item-card">
+                <span class="item-name">Refrigerantes Lata</span>
+                <p class="item-description-small">(Coca-Cola, Guaraná, etc.)</p>
+                <span class="item-price">R$ 6,00</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
