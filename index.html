@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fino Sabor – Sorvete é Arte</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#FBF7F3;--surface:#FFFFFF;--text:#1F1B24;--muted:#6F5F73;--border:#E7DEE7;--accent:#F7C6CE;--accent2:#F7E2A5;--accent3:#C9B4FF;--shadow:0 18px 50px rgba(145,92,179,.12);--amar:#FFD700;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+
+  .hero{background:linear-gradient(150deg,#fff8f2 0%,#ffe7dc 50%,#f2e7ff 100%);padding:30px 18px 24px;text-align:center;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;inset:0;background:repeating-conic-gradient(rgba(247,198,206,.14) 0deg 8deg,transparent 8deg 16deg);}
+  .glow{position:absolute;border-radius:50%;pointer-events:none;filter:blur(42px);}
+  .g1{width:320px;height:320px;background:rgba(199,180,255,.24);top:-70px;right:-50px;}
+  .g2{width:240px;height:240px;background:rgba(247,198,206,.24);bottom:-40px;left:-40px;}
+  .hero-logo{font-family:'Playfair Display',serif;font-size:clamp(52px,11vw,76px);font-weight:900;line-height:1;letter-spacing:-.02em;position:relative;z-index:1;animation:up .6s ease both;}
+  .lf{display:block;background:linear-gradient(135deg,#fff 0%,#ffd633 55%,#fff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .ls{display:block;background:linear-gradient(135deg,#ffd633 0%,#ff5b92 55%,#cfa1ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .hero-tag{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(13px,2.5vw,17px);color:rgba(31,27,36,.6);margin-top:12px;position:relative;z-index:1;animation:up .6s .1s ease both;}
+  .arc{width:56px;height:3px;border-radius:3px;margin:16px auto 0;background:linear-gradient(90deg,rgba(201,180,255,.95),rgba(247,198,206,.95));position:relative;z-index:1;animation:up .6s .15s ease both;}
+  @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+  .cat-nav{background:rgba(255,255,255,.92);backdrop-filter:blur(18px);border-bottom:1px solid rgba(143,121,169,.25);padding:0 14px;position:sticky;top:0;z-index:50;}
+  .cat-row{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:11px 0;}
+  .cat-row::-webkit-scrollbar{display:none}
+  .cat-btn{flex-shrink:0;padding:8px 17px;border-radius:100px;border:1px solid rgba(145,92,179,.25);background:transparent;color:var(--text);font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;font-family:inherit;}
+  .cat-btn:hover{background:rgba(247,198,206,.3);}
+  .cat-btn.active{background:linear-gradient(135deg,#c9b4ff,#f7c6ce);border-color:transparent;color:#1F1B24;}
+
+  .section{padding:28px 14px 6px;max-width:1180px;margin:0 auto;}
+  .sec-head{display:flex;align-items:center;gap:11px;margin-bottom:18px;}
+  .sec-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+  .sec-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--text);line-height:1.1;}
+  .sec-sub{font-size:11px;color:rgba(31,27,36,.55);margin-top:1px;}
+  .sec-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(145,92,179,.22),transparent);}
+
+  /* IMAGENS DOS CARDS */
+  .acai-img{width:100%;height:240px;object-fit:contain;object-position:center center;display:block;background:#f5f0fa;}
+  .card-img{width:90px;height:90px;object-fit:cover;border-radius:13px;flex-shrink:0;}
+
+  /* CARDS AÇAÍ */
+  .acai-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;}
+  .acai-card{background:rgba(255,255,255,.96);border:1px solid rgba(143,121,169,.2);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);transition:transform .22s,border-color .22s;}
+  .acai-card:hover{transform:translateY(-4px);border-color:rgba(143,121,169,.4);}
+  .acai-bar{height:4px;}
+  .br{background:linear-gradient(90deg,#7B00CC,#CE93D8);}
+  .bp{background:linear-gradient(90deg,#FF4081,#F48FB1);}
+  .ba{background:linear-gradient(90deg,#F9A825,#FFD700);}
+  .acai-top{padding:16px 14px 12px;display:flex;align-items:center;gap:12px;}
+  .acai-ico{width:54px;height:54px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;}
+  .ir{background:rgba(123,0,204,.17);}
+  .ip{background:rgba(255,64,129,.14);}
+  .acai-info{flex:1;}
+  .acai-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:2px;}
+  .acai-ml{font-size:11px;color:rgba(31,27,36,.55);}
+  .acai-price{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;background:linear-gradient(135deg,#f7c6ce,#f7e2a5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-top:4px;}
+
+  .acai-recheios{background:rgba(123,0,204,.1);border-top:1px solid rgba(123,0,204,.2);padding:10px 14px;}
+  .acai-r-title{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#CE93D8;margin-bottom:6px;}
+  .recheios-tags{display:flex;flex-wrap:wrap;gap:4px;}
+  .rtag{font-size:10px;background:rgba(201,180,255,.2);border:1px solid rgba(145,92,179,.22);border-radius:100px;padding:2px 9px;color:var(--text);}
+  .rtag.more{background:rgba(247,198,206,.28);border-color:rgba(247,198,206,.4);color:var(--text);cursor:pointer;}
+
+  /* CALDAS — agora como adicional */
+  .acai-caldas{background:rgba(247,226,165,.25);border-top:1px solid rgba(247,198,206,.3);padding:10px 14px;}
+  .acai-c-title{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text);margin-bottom:2px;display:flex;align-items:center;gap:6px;}
+  .calda-preco-badge{background:rgba(247,198,206,.35);border:1px solid rgba(247,198,206,.55);border-radius:100px;padding:1px 8px;font-size:10px;color:var(--text);font-weight:700;}
+  .calda-hint{font-size:10px;color:rgba(31,27,36,.55);margin-bottom:6px;}
+  .calda-tags{display:flex;flex-wrap:wrap;gap:4px;}
+  .ctag{font-size:10px;background:rgba(255,160,0,.1);border:1px solid rgba(255,160,0,.2);border-radius:100px;padding:2px 9px;color:rgba(255,215,0,.8);}
+
+  .acai-foot{padding:12px 14px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(145,92,179,.18);}
+  .bdg{font-size:10px;font-weight:700;letter-spacing:.05em;padding:2px 9px;border-radius:100px;text-transform:uppercase;}
+  .bpop{background:rgba(255,215,0,.11);color:#FFD700;border:1px solid rgba(255,215,0,.2);}
+  .bnew{background:rgba(255,64,129,.11);color:#FF4081;border:1px solid rgba(255,64,129,.2);}
+  .bart{background:rgba(123,0,204,.18);color:#CE93D8;border:1px solid rgba(123,0,204,.28);}
+
+  .add-wrap{display:flex;align-items:center;}
+  .add-btn{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#7B00CC,#FF4081);border:none;color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .14s;line-height:1;}
+  .add-btn:hover{transform:scale(1.1);}
+  .add-btn.h{display:none;}
+  .qc{display:none;align-items:center;gap:5px;}
+  .qc.s{display:flex;}
+  .qb{width:26px;height:26px;border-radius:50%;border:1px solid rgba(145,92,179,.25);background:transparent;color:var(--text);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .14s;}
+  .qb:hover{background:rgba(145,92,179,.1);}
+  .qn{font-size:14px;font-weight:700;min-width:16px;text-align:center;}
+
+  /* CARDS SIMPLES */
+  .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:11px;}
+  .card{width:100%;max-width:760px;background:rgba(255,255,255,.96);border:1px solid rgba(143,121,169,.18);border-radius:17px;overflow:hidden;box-shadow:var(--shadow);transition:transform .22s,border-color .22s;}
+  .card:hover{transform:translateY(-4px);border-color:rgba(143,121,169,.35);}
+  .card-bar{height:4px;}
+  .card-inner{padding:15px 14px;display:flex;align-items:center;gap:12px;}
+  .card-ico{width:56px;height:56px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:29px;flex-shrink:0;}
+  .ia{background:rgba(255,215,0,.14);}
+  .card-info{flex:1;min-width:0;}
+  .card-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px;}
+  .card-desc{font-size:11px;color:rgba(31,27,36,.58);line-height:1.5;margin-bottom:9px;}
+  .flavor-note{font-size:11px;color:rgba(31,27,36,.55);margin-bottom:10px;}
+  .flavor-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:11px;}
+  .flavor-tag{font-size:11px;padding:6px 10px;border-radius:100px;border:1px solid rgba(145,92,179,.22);background:rgba(247,198,206,.2);color:var(--text);cursor:pointer;transition:all .16s;}
+  .flavor-tag:hover{background:rgba(201,180,255,.3);border-color:rgba(145,92,179,.4);}
+  .flavor-count{font-size:10px;color:rgba(31,27,36,.55);font-weight:700;}
+  .card-foot{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .card-price{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;background:linear-gradient(135deg,#FFD700,#FFA000);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .punit{font-size:10px;color:rgba(255,215,0,.4);font-family:'Plus Jakarta Sans',sans-serif;}
+
+  /* BANNER PESO — card no grid */
+  .peso-card{background:rgba(255,255,255,.96);border:1px solid rgba(143,121,169,.18);border-radius:17px;padding:20px 18px;position:relative;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center;}
+  .peso-card::before{content:'';display:block;height:4px;background:linear-gradient(90deg,#F9A825,#FFD700);position:absolute;top:0;left:0;right:0;border-radius:17px 17px 0 0;}
+  .pl{flex:1;position:relative;z-index:1;}
+  .pey{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(31,27,36,.5);margin-bottom:4px;}
+  .pt{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text);line-height:1.15;margin-bottom:4px;}
+  .pt em{font-style:italic;background:linear-gradient(135deg,#F9A825,#FFD700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .ps{font-size:11px;color:rgba(31,27,36,.55);line-height:1.5;}
+  /* Caldas no banner do peso */
+  .peso-caldas{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;align-items:center;}
+  .peso-calda-lbl{font-size:10px;color:rgba(31,27,36,.6);margin-right:4px;}
+  .peso-calda-tag{font-size:10px;background:rgba(255,160,0,.15);border:1px solid rgba(255,160,0,.25);border-radius:100px;padding:2px 9px;color:#FFD700;}
+  .peso-calda-preco{font-size:10px;background:rgba(255,160,0,.25);border:1px solid rgba(255,160,0,.4);border-radius:100px;padding:2px 9px;color:#FFD700;font-weight:700;}
+  .pr{text-align:right;flex-shrink:0;position:relative;z-index:1;}
+  .pfrom{font-size:9px;color:rgba(255,215,0,.45);margin-bottom:3px;}
+  .pval{font-family:'Playfair Display',serif;font-size:30px;font-weight:900;background:linear-gradient(135deg,#FFD700,#FF4081);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+  .punit2{font-size:10px;color:rgba(255,215,0,.42);}
+
+  .divider{height:1px;background:rgba(31,27,36,.08);margin:16px 14px 0;}
+
+  /* CART BAR */
+  .cart-bar{position:sticky;bottom:0;background:linear-gradient(135deg,#c9b4ff,#f7c6ce);border-top:1px solid rgba(143,121,169,.18);padding:12px 16px;display:none;align-items:center;justify-content:space-between;gap:12px;z-index:40;}
+  .cart-bar.show{display:flex;}
+  .ci{display:flex;flex-direction:column;}
+  .cl{font-size:11px;color:rgba(31,27,36,.55);}
+  .cv{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--text);}
+  .cb{background:linear-gradient(135deg,#FFD700,#FFA000);color:#1A001F;border:none;padding:11px 20px;border-radius:100px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap;transition:transform .14s;}
+  .cb:hover{transform:scale(1.04);}
+
+  /* FOOTER */
+  .footer{background:#faf5f3;border-top:1px solid rgba(143,121,169,.18);padding:28px 18px;text-align:center;}
+  .fb{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;background:linear-gradient(135deg,#c9b4ff,#f7c6ce,#f7e2a5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:3px;}
+  .fs{font-size:11px;color:rgba(31,27,36,.55);margin-bottom:12px;}
+  .fi{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .fit{font-size:11px;color:rgba(31,27,36,.55);}
+  .fc{font-size:10px;color:rgba(31,27,36,.4);margin-top:14px;}
+
+  /* MODAL RECHEIOS */
+  .modal-rec{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:300;align-items:flex-end;justify-content:center;}
+  .modal-rec.show{display:flex;}
+  .rec-panel{background:#1E0030;border:1px solid rgba(255,215,0,.12);border-radius:24px 24px 0 0;padding:22px 18px 40px;width:100%;max-width:520px;animation:su .22s ease;max-height:88vh;overflow-y:auto;}
+  @keyframes su{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+  .rec-handle{width:34px;height:4px;border-radius:4px;background:rgba(255,255,255,.14);margin:0 auto 18px;}
+  .rec-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:4px;}
+  .rec-sub{font-size:12px;color:rgba(255,255,255,.35);margin-bottom:18px;}
+
+  .modal-block-title{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin:16px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mt-roxo{color:#CE93D8;}
+  .mt-amar{color:#FFD700;}
+  .modal-hint{font-size:11px;color:rgba(255,255,255,.3);margin-bottom:8px;}
+
+  /* pill de calda com preço */
+  .calda-adicional-hint{background:rgba(255,160,0,.08);border:1px solid rgba(255,160,0,.18);border-radius:10px;padding:8px 12px;margin-bottom:10px;font-size:12px;color:rgba(255,215,0,.7);display:flex;align-items:center;gap:6px;}
+  .calda-preco-pill{background:rgba(255,160,0,.25);border:1px solid rgba(255,160,0,.4);border-radius:100px;padding:2px 10px;font-size:11px;font-weight:800;color:#FFD700;white-space:nowrap;}
+
+  .rec-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px;}
+  .rec-item{padding:6px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);font-size:13px;color:rgba(255,255,255,.7);cursor:pointer;transition:all .18s;user-select:none;}
+  .rec-item:hover{border-color:rgba(123,0,204,.5);background:rgba(123,0,204,.15);color:#fff;}
+  .rec-item.sel{background:linear-gradient(135deg,rgba(123,0,204,.35),rgba(255,64,129,.2));border-color:rgba(155,39,176,.6);color:#fff;}
+
+  .calda-item{padding:6px 14px;border-radius:100px;border:1px solid rgba(255,160,0,.2);background:rgba(255,160,0,.07);font-size:13px;color:rgba(255,255,255,.7);cursor:pointer;transition:all .18s;user-select:none;display:flex;align-items:center;gap:6px;}
+  .calda-item:hover{border-color:rgba(255,160,0,.5);background:rgba(255,160,0,.18);color:#fff;}
+  .calda-item.sel{background:linear-gradient(135deg,rgba(255,160,0,.3),rgba(255,100,0,.15));border-color:rgba(255,160,0,.7);color:#FFD700;}
+  .calda-item-preco{font-size:10px;background:rgba(255,160,0,.2);border-radius:100px;padding:1px 7px;color:#FFD700;font-weight:700;}
+
+  .rec-counter{background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.15);border-radius:12px;padding:10px 14px;margin:14px 0 0;font-size:13px;display:flex;align-items:center;gap:8px;}
+  .rec-counter-num{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#FFD700;}
+  .rec-counter-txt{color:rgba(255,255,255,.45);}
+  .rec-warning{font-size:12px;color:#FF4081;margin-top:6px;display:none;}
+  .rec-warning.show{display:block;}
+
+  /* Resumo do total no modal recheios */
+  .rec-total-box{background:rgba(255,215,0,.06);border:1px solid rgba(255,215,0,.12);border-radius:12px;padding:10px 14px;margin-top:14px;display:flex;justify-content:space-between;align-items:center;}
+  .rec-total-lbl{font-size:12px;color:rgba(255,255,255,.4);}
+  .rec-total-val{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#FFD700;}
+
+  .rec-btns{display:flex;gap:9px;margin-top:16px;}
+  .rec-cancel{flex:1;padding:12px;border-radius:100px;border:1px solid rgba(255,255,255,.14);background:transparent;color:#fff;font-size:14px;cursor:pointer;font-family:inherit;}
+  .rec-confirm{flex:2;padding:12px 16px;border-radius:100px;background:linear-gradient(135deg,#7B00CC,#FF4081);border:none;color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+
+  /* MODAL PEDIDO */
+  .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:flex-end;justify-content:center;}
+  .overlay.show{display:flex;}
+  .modal{background:#1E0030;border:1px solid rgba(255,215,0,.1);border-radius:24px 24px 0 0;padding:22px 18px 38px;width:100%;max-width:520px;animation:su .22s ease;max-height:80vh;overflow-y:auto;}
+  .mh{width:34px;height:4px;border-radius:4px;background:rgba(255,255,255,.14);margin:0 auto 18px;}
+  .mt{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;margin-bottom:16px;}
+  .mi{display:flex;flex-direction:column;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px;gap:3px;}
+  .mi-top{display:flex;justify-content:space-between;align-items:center;gap:8px;}
+  .mil{display:flex;align-items:center;gap:7px;color:rgba(255,255,255,.72);}
+  .mip{color:var(--amar);font-weight:700;white-space:nowrap;}
+  .mi-extras{font-size:11px;color:rgba(255,255,255,.35);padding-left:24px;line-height:1.6;}
+  .mtr{display:flex;justify-content:space-between;align-items:center;padding:14px 0 0;}
+  .mtl{font-size:13px;color:rgba(255,255,255,.4);}
+  .mtv{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--amar);}
+  .mbs{display:flex;gap:9px;margin-top:16px;}
+  .mbk{flex:1;padding:12px;border-radius:100px;border:1px solid rgba(255,255,255,.14);background:transparent;color:#fff;font-size:14px;cursor:pointer;font-family:inherit;}
+  .mwp{flex:2;padding:12px 16px;border-radius:100px;background:linear-gradient(135deg,#25D366,#128C7E);border:none;color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px;}
+
+  .toast{position:fixed;top:14px;left:50%;transform:translateX(-50%) translateY(-65px);background:linear-gradient(135deg,#7B00CC,#FF4081);color:#fff;padding:9px 20px;border-radius:100px;font-size:13px;font-weight:700;z-index:400;transition:transform .27s;white-space:nowrap;box-shadow:0 5px 18px rgba(123,0,204,.4);}
+  .toast.show{transform:translateX(-50%) translateY(0);}
+
+  @media(max-width:480px){
+    .acai-grid,.cards-grid{grid-template-columns:1fr;}
+    .peso-banner{flex-direction:column;text-align:center;}
+    .pr{text-align:center;}
+    .cart-bar{flex-wrap:wrap;}
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="glow g1"></div><div class="glow g2"></div>
+  <div class="hero-logo">
+    <span class="lf">Fino</span>
+    <span class="ls">Sabor</span>
+  </div>
+  <div class="hero-tag">🎨 Sorvete também é Arte</div>
+  <div class="arc"></div>
+</section>
+
+<nav class="cat-nav">
+  <div class="cat-row">
+    <button class="cat-btn active" onclick="filter('todos',this)">🍽️ Tudo</button>
+    <button class="cat-btn" onclick="filter('acai',this)">🍇 Açaí</button>
+    <button class="cat-btn" onclick="filter('sorvete',this)">🍦 Sorvete</button>
+    <button class="cat-btn" onclick="filter('milkshake',this)">🥤 Milk Shake</button>
+  </div>
+</nav>
+
+<main id="content"></main>
+<div id="peso"></div>
+
+<footer class="footer">
+  <div class="fb">Fino Sabor</div>
+  <div class="fs">Açaiteria & Sorveteria</div>
+  <div class="fi">
+    <span class="fit">📍 São José de Mipibu, RN</span>
+    <span class="fit">📱 (84) 9472-3417</span>
+    <span class="fit">⏰ Ter–Sáb 14h–21h · Dom 15h–21:30h</span>
+  </div>
+  <div class="fc">© 2025 Fino Sabor</div>
+</footer>
+
+<div class="cart-bar" id="cb">
+  <div class="ci">
+    <span class="cl" id="cl">0 itens</span>
+    <span class="cv" id="cv">R$ 0,00</span>
+  </div>
+  <button class="cb" onclick="openModal()">🛒 Ver Pedido</button>
+</div>
+
+<!-- MODAL RECHEIOS + CALDAS -->
+<div class="modal-rec" id="modal-rec">
+  <div class="rec-panel">
+    <div class="rec-handle"></div>
+    <div class="rec-title" id="rec-title">Personalize seu Açaí</div>
+    <div class="rec-sub" id="rec-sub"></div>
+
+    <div class="modal-block-title mt-roxo">� Cremes inclusos</div>
+    <div class="modal-hint" id="creme-hint">Escolha 2 cremes para acompanhar o Açaí.</div>
+    <div class="rec-grid" id="creme-grid"></div>
+    <div class="rec-counter">
+      <span class="rec-counter-num" id="creme-count">0</span>
+      <span class="rec-counter-txt" id="creme-txt"></span>
+    </div>
+    <div class="rec-warning" id="creme-warn"></div>
+
+    <div class="modal-block-title mt-roxo" style="margin-top:20px;">�🍫 Recheios inclusos</div>
+    <div class="modal-hint" id="rec-hint"></div>
+    <div class="rec-grid" id="rec-grid"></div>
+    <div class="rec-counter">
+      <span class="rec-counter-num" id="rec-count">0</span>
+      <span class="rec-counter-txt" id="rec-txt"></span>
+    </div>
+    <div class="rec-warning" id="rec-warn"></div>
+
+    <div class="modal-block-title mt-amar" style="margin-top:20px;">🍓 Caldas — Adicional
+      <span class="calda-preco-pill">+ R$ 4,00</span>
+    </div>
+    <div class="calda-adicional-hint">
+      ℹ️ As caldas são apenas adicionais: + R$ 4,00 ou no Peso.
+      <span class="calda-preco-pill">+ R$ 4,00</span>
+    </div>
+    <div class="rec-grid" id="calda-grid"></div>
+
+    <div class="rec-total-box">
+      <span class="rec-total-lbl">Total do item</span>
+      <span class="rec-total-val" id="rec-total-val">R$ 0,00</span>
+    </div>
+
+    <div class="rec-btns">
+      <button class="rec-cancel" onclick="closeRec()">Cancelar</button>
+      <button class="rec-confirm" onclick="confirmRec()">Adicionar ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL PEDIDO -->
+<div class="overlay" id="ov" onclick="cmo(event)">
+  <div class="modal">
+    <div class="mh"></div>
+    <div class="mt">🛒 Seu Pedido</div>
+    <div id="mb"></div>
+    <div class="mtr">
+      <span class="mtl">Total</span>
+      <span class="mtv" id="mtv">R$ 0,00</span>
+    </div>
+    <div class="mbs">
+      <button class="mbk" onclick="document.getElementById('ov').classList.remove('show')">Continuar</button>
+      <button class="mwp" onclick="sendW()">
+        <svg width="15" height="15" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Pedir pelo WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">🎨 Adicionado!</div>
+
+<script>
+const WN  = '5584994723417';
+const fmt = v => 'R$ ' + v.toFixed(2).replace('.',',');
+const CALDA_PRECO = 4;
+
+const RECHEIOS = ['Côco ralado','Granulado','Mem','Gotas de chocolate','Ovomaltine',
+  'Amendoim','Castanha','Jujuba','Finis','Leite em pó','Choco Power','Choco Ball',
+  'Farinha láctea','Granola','Paçoca'];
+
+const CREMES = ['Ninho','Ovomaltine','Oreo','Cupuaçu','Tapioca','Choco menta','Morango','Amendoim','Maracujá','Açaí'];
+
+const SORVETES = ['Nata Goiaba','Nata Uva','Algodão Doce','Pavê','Abacaxi Suíço','Chocolate Amargo','Ninho Trufado','Pistache','Cajá Zero Lactose','Morango Zero Lactose','Torta de Limão','Três Chocolates','Paçoca','Choco Menta','Côco Queimado','Chiclete com Banana','Bem Casado','Banana Caramelizada','Brigadeiro','Morango','Mousse de Maracujá','Açaí'];
+
+const CALDAS = [
+  {nome:'Morango',   icon:'🍓'},
+  {nome:'Abacaxi ao vinho', icon:'🍷'},
+  {nome:'Ameixa',    icon:'🫐'},
+  {nome:'Cookies',   icon:'🍪'},
+];
+
+const P = [
+  {id:1,cat:'acai',   e:'🥤',nome:'Açaí 300ml',      preco:12,bar:'br',ico:'ir',bdg:'',   maxRec:2, img:'acai300ml.webp'},
+  {id:2,cat:'acai',   e:'🥤',nome:'Açaí 400ml',      preco:14,bar:'br',ico:'ir',bdg:'pop',maxRec:3, img:'acai400ml.jpg'},
+  {id:3,cat:'acai',   e:'🥤',nome:'Açaí 500ml',      preco:17,bar:'bp',ico:'ip',bdg:'',   maxRec:4, img:'acai500ml.jpg'},
+  {id:4,cat:'sorvete',e:'🍦',nome:'Sorvete por Bola', preco:5, bar:'ba',ico:'ia',bdg:'', desc:'Clique no sabor desejado para adicionar 1 bola. Cada bola custa R$ 5,00.', unit:'por bola', img:'https://images.pexels.com/photos/1362534/pexels-photo-1362534.jpeg?auto=compress&cs=tinysrgb&w=600&fit=crop'},
+  {id:26,cat:'milkshake',e:'🥤',nome:'Milk Shake',   preco:14,bar:'bp',ico:'ip',bdg:'new', desc:'Cremoso e gelado. Sabor à escolha de nossos sorvetes — pode escolher até dois sabores.', img:'https://images.pexels.com/photos/10066814/pexels-photo-10066814.jpeg?auto=compress&cs=tinysrgb&w=600&fit=crop'},
+];
+
+const BDG={
+  pop:'<span class="bdg bpop">⭐ Mais pedido</span>',
+  new:'<span class="bdg bnew">Novo</span>',
+  art:'<span class="bdg bart">🎨 Arte</span>',
+};
+
+const cart=[];
+let recState={pid:null,cremeSel:[],recSel:[],caldaSel:null,max:0,maxCreme:2,basePreco:0};
+let catAtiva='todos';
+
+function sameExtras(item,recheios,calda,cremes){
+  const hasRecheio = Array.isArray(item.recheios);
+  const hasSel = Array.isArray(recheios);
+  if(hasRecheio !== hasSel) return false;
+  if(item.calda !== calda) return false;
+  if(item.cremes?.length !== (cremes?.length||0)) return false;
+  if(!hasSel) return true;
+  const a=[...item.recheios].sort();
+  const b=[...recheios].sort();
+  const c=[...(item.cremes||[])].sort();
+  const d=[...(cremes||[])].sort();
+  return a.length===b.length && a.every((value,index)=>value===b[index]) && c.length===d.length && c.every((value,index)=>value===d[index]);
+}
+
+function findCartItem(pid,recheios,calda,cremes){
+  return cart.find(item=>item.pid===pid && sameExtras(item,recheios,calda,cremes));
+}
+
+/* ── RENDER ── */
+function render(){
+  const lista=catAtiva==='todos'?P:P.filter(p=>p.cat===catAtiva);
+  const cats=catAtiva==='todos'?['acai','sorvete','milkshake']:[catAtiva];
+  const SEC={
+    acai:     {icon:'🍇',bg:'rgba(199,180,255,.24)',t:'Copos de Açaí',    s:'Cremoso · Gelado · Irresistível'},
+    sorvete:  {icon:'🍦',bg:'rgba(247,198,206,.24)',t:'Sorvetes',        s:'Cremoso · Bola por R$ 5,00'},
+    milkshake:{icon:'🥤',bg:'rgba(255,64,129,.14)',t:'Milk Shake',      s:'Cremoso · Gelado · Apaixonante'},
+  };
+  let html='';
+
+  cats.forEach((c,i)=>{
+    const prods=lista.filter(p=>p.cat===c);
+    if(!prods.length)return;
+    const s=SEC[c];
+    html+=`${i>0?'<div class="divider"></div>':''}
+    <section class="section">
+      <div class="sec-head">
+        <div class="sec-icon" style="background:${s.bg}">${s.icon}</div>
+        <div><div class="sec-title">${s.t}</div><div class="sec-sub">${s.s}</div></div>
+        <div class="sec-line"></div>
+      </div>`;
+
+    if(c==='acai'){
+      html+='<div class="acai-grid">';
+      prods.forEach(p=>{
+        html+=`
+        <div class="acai-card">
+          ${p.img?`<img class="acai-img" src="${p.img}" alt="${p.nome}" loading="lazy">`:`<div class="acai-bar ${p.bar}"></div>`}
+          <div class="acai-top">
+            <div class="acai-ico ${p.ico}">${p.e}</div>
+            <div class="acai-info">
+              <div class="acai-name">${p.nome}</div>
+              <div class="acai-ml">2 cremes · ${p.maxRec} recheios · leite condensado incluso</div>
+              <div class="acai-price">${fmt(p.preco)}</div>
+            </div>
+          </div>
+          <div class="acai-recheios">
+            <div class="acai-r-title">🍫 Recheios (escolha ${p.maxRec})</div>
+            <div class="recheios-tags">
+              ${RECHEIOS.slice(0,4).map(r=>`<span class="rtag">${r}</span>`).join('')}
+              <span class="rtag more" onclick="openRec(${p.id})">+${RECHEIOS.length-4} mais →</span>
+            </div>
+          </div>
+          <div class="acai-caldas">
+            <div class="acai-c-title">
+              🍓 Caldas — Adicional
+              <span class="calda-preco-badge">+ R$ 4,00</span>
+            </div>
+            <div class="calda-hint">Apenas adicional ou no Peso · + R$ 4,00</div>
+            <div class="calda-tags">
+              ${CALDAS.map(c=>`<span class="ctag">${c.icon} ${c.nome}</span>`).join('')}
+            </div>
+          </div>
+          <div class="acai-foot">
+            ${BDG[p.bdg]||'<span></span>'}
+            <button class="add-btn" onclick="openRec(${p.id})">+</button>
+          </div>
+        </div>`;
+      });
+      html+='</div>';
+    } else if(c==='sorvete') {
+      html+='<div class="cards-grid">';
+      prods.forEach(p=>{
+        const q=cart.filter(i=>i.pid===p.id).reduce((s,i)=>s+i.qty,0);
+        const u=p.unit?`<span class="punit"> ${p.unit}</span>`:'';
+        html+=`
+        <div class="card">
+          <div class="card-bar ${p.bar}"></div>
+          <div class="card-inner">
+            ${p.img?`<img class="card-img" src="${p.img}" alt="${p.nome}" loading="lazy">`:`<div class="card-ico ${p.ico}">${p.e}</div>`}
+            <div class="card-info">
+              <div class="card-name">${p.nome}</div>
+              <div class="card-desc">${p.desc||''}</div>
+              <div class="flavor-note">Sabores disponíveis abaixo. Clique para adicionar 1 bola de cada sabor.</div>
+              <div class="flavor-list">
+                ${SORVETES.map(s=>`<span class="flavor-tag" onclick="addSorvete('${s}')">${s}</span>`).join('')}
+              </div>
+              <div class="card-foot">
+                <span class="card-price">${fmt(p.preco)}${u}</span>
+                ${BDG[p.bdg]||''}
+                ${q?`<div class="flavor-count">${q} bola${q>1?'s':''} no carrinho</div>`:''}
+              </div>
+            </div>
+          </div>
+        </div>`;
+      });
+      html+=`
+        <div class="peso-card">
+          <div class="pey">🎨 Experiência Completa</div>
+          <div class="pt">Sorvete no Peso<br><em>Monte sua Arte!</em></div>
+          <div class="ps">Sabores ilimitados · coberturas e acompanhamentos à escolha.</div>
+          <div class="peso-caldas" style="margin-top:10px;">
+            <span class="peso-calda-lbl">Caldas disponíveis</span>
+            <span class="peso-calda-preco">+ R$ 4,00 cada</span>
+            ${CALDAS.map(c=>`<span class="peso-calda-tag">${c.icon} ${c.nome}</span>`).join('')}
+          </div>
+          <div class="pr" style="margin-top:14px;text-align:left;">
+            <div class="pfrom">a partir de</div>
+            <div class="pval">R$ 49,99</div>
+            <div class="punit2">R$ / kg</div>
+          </div>
+        </div>`;
+      html+='</div>';
+    } else {
+      html+='<div class="cards-grid">';
+      prods.forEach(p=>{
+        const q=cart.filter(i=>i.pid===p.id).reduce((s,i)=>s+i.qty,0);
+        const u=p.unit?`<span class="punit"> ${p.unit}</span>`:'';
+        html+=`
+        <div class="card">
+          <div class="card-bar ${p.bar}"></div>
+          <div class="card-inner">
+            ${p.img?`<img class="card-img" src="${p.img}" alt="${p.nome}" loading="lazy">`:`<div class="card-ico ${p.ico}">${p.e}</div>`}
+            <div class="card-info">
+              <div class="card-name">${p.nome}</div>
+              <div class="card-desc">${p.desc||''}</div>
+              <div class="card-foot">
+                <span class="card-price">${fmt(p.preco)}${u}</span>
+                ${BDG[p.bdg]||''}
+                <div class="add-wrap">
+                  <button class="add-btn ${q>0?'h':''}" id="ab${p.id}" onclick="addSimple(${p.id})">+</button>
+                  <div class="qc ${q>0?'s':''}" id="qc${p.id}">
+                    <button class="qb" onclick="chS(${p.id},-1)">−</button>
+                    <span class="qn" id="qn${p.id}">${q}</span>
+                    <button class="qb" onclick="chS(${p.id},1)">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+      });
+      html+='</div>';
+    }
+    html+='</section>';
+  });
+
+  document.getElementById('content').innerHTML=html||'<div style="text-align:center;padding:50px 20px;color:rgba(31,27,36,.45);">Nenhum item.</div>';
+
+  document.getElementById('peso').innerHTML='';
+}
+
+/* ── MODAL RECHEIOS ── */
+function openRec(pid){
+  const p=P.find(x=>x.id===pid);
+  if(!p) return;
+  recState={pid,cremeSel:[],recSel:[],caldaSel:null,max:p.maxRec||0,maxCreme:2,basePreco:p.preco};
+  document.getElementById('rec-title').textContent=`Personalize — ${p.nome}`;
+  document.getElementById('rec-sub').textContent=`Preço base: ${fmt(p.preco)} · Inclui leite condensado · Calda opcional: +${fmt(CALDA_PRECO)}`;
+  document.getElementById('rec-hint').textContent=`Escolha até ${p.maxRec} recheio${p.maxRec>1?'s':''}`;
+  document.getElementById('rec-txt').textContent=`de ${p.maxRec} recheio${p.maxRec>1?'s':''} selecionados`;
+  document.getElementById('creme-txt').textContent=`de ${recState.maxCreme} cremes selecionados`;
+  document.getElementById('rec-count').textContent='0';
+  document.getElementById('creme-count').textContent='0';
+  document.getElementById('rec-warn').classList.remove('show');
+  document.getElementById('creme-warn').classList.remove('show');
+  updateRecTotal();
+
+  document.getElementById('creme-grid').innerHTML=CREMES.map(c=>
+    `<span class="rec-item" onclick="toggleCreme(this,'${c}')">${c}</span>`
+  ).join('');
+
+  document.getElementById('rec-grid').innerHTML=RECHEIOS.map(r=>
+    `<span class="rec-item" onclick="toggleRec(this,'${r}')">${r}</span>`
+  ).join('');
+
+  document.getElementById('calda-grid').innerHTML=CALDAS.map(c=>
+    `<span class="calda-item" onclick="toggleCalda(this,'${c.nome}')">
+      ${c.icon} ${c.nome}
+      <span class="calda-item-preco">+R$${CALDA_PRECO}</span>
+    </span>`
+  ).join('');
+
+  document.getElementById('modal-rec').classList.add('show');
+}
+
+function toggleRec(el,nome){
+  if(el.classList.contains('sel')){
+    el.classList.remove('sel');
+    recState.recSel=recState.recSel.filter(r=>r!==nome);
+  } else {
+    if(recState.recSel.length>=recState.max){
+      const w=document.getElementById('rec-warn');
+      w.textContent=`Limite de ${recState.max} recheio${recState.max>1?'s':''} atingido. Remova um para trocar.`;
+      w.classList.add('show'); return;
+    }
+    el.classList.add('sel');
+    recState.recSel.push(nome);
+    document.getElementById('rec-warn').classList.remove('show');
+  }
+  document.getElementById('rec-count').textContent=recState.recSel.length;
+  updateRecTotal();
+}
+
+function toggleCreme(el,nome){
+  if(el.classList.contains('sel')){
+    el.classList.remove('sel');
+    recState.cremeSel=recState.cremeSel.filter(r=>r!==nome);
+  } else {
+    if(recState.cremeSel.length>=recState.maxCreme){
+      const w=document.getElementById('creme-warn');
+      w.textContent=`Escolha no máximo ${recState.maxCreme} cremes. Remova um para trocar.`;
+      w.classList.add('show'); return;
+    }
+    el.classList.add('sel');
+    recState.cremeSel.push(nome);
+    document.getElementById('creme-warn').classList.remove('show');
+  }
+  document.getElementById('creme-count').textContent=recState.cremeSel.length;
+  updateRecTotal();
+}
+
+function toggleCalda(el,nome){
+  const jaSel=el.classList.contains('sel');
+  document.querySelectorAll('.calda-item').forEach(c=>c.classList.remove('sel'));
+  if(!jaSel){el.classList.add('sel');recState.caldaSel=nome;}
+  else{recState.caldaSel=null;}
+  updateRecTotal();
+}
+
+function updateRecTotal(){
+  const total=recState.basePreco+(recState.caldaSel?CALDA_PRECO:0);
+  document.getElementById('rec-total-val').textContent=fmt(total);
+}
+
+function confirmRec(){
+  if(recState.cremeSel.length!==recState.maxCreme){
+    const w=document.getElementById('creme-warn');
+    w.textContent=`Escolha ${recState.maxCreme} cremes para continuar.`;
+    w.classList.add('show'); return;
+  }
+  if(recState.recSel.length===0){
+    const w=document.getElementById('rec-warn');
+    w.textContent='Escolha pelo menos 1 recheio para continuar.';
+    w.classList.add('show'); return;
+  }
+  const p=P.find(x=>x.id===recState.pid);
+  const total=p.preco+(recState.caldaSel?CALDA_PRECO:0);
+  const existing=findCartItem(p.id,[...recState.recSel],recState.caldaSel||null,[...recState.cremeSel]);
+  if(existing){
+    existing.qty++;
+  } else {
+    cart.push({
+      pid:recState.pid, nome:p.nome, emoji:p.e,
+      preco:total, qty:1,
+      recheios:[...recState.recSel],
+      cremes:[...recState.cremeSel],
+      calda:recState.caldaSel||null,
+    });
+  }
+  closeRec(); upBar(); showToast();
+}
+
+function closeRec(){document.getElementById('modal-rec').classList.remove('show');}
+
+/* ── SIMPLES ── */
+function addSimple(pid){
+  const p=P.find(x=>x.id===pid);
+  const ex=findCartItem(pid,null,null);
+  if(ex){ex.qty++;}
+  else{cart.push({pid,nome:p.nome,emoji:p.e,preco:p.preco,qty:1,recheios:null,calda:null});}
+  const q=cart.filter(i=>i.pid===pid).reduce((s,i)=>s+i.qty,0);
+  document.getElementById('ab'+pid)?.classList.add('h');
+  document.getElementById('qc'+pid)?.classList.add('s');
+  const qn=document.getElementById('qn'+pid);if(qn)qn.textContent=q;
+  upBar();showToast();
+}
+
+function addSorvete(flavor){
+  const p=P.find(x=>x.id===4);
+  if(!p) return;
+  const existing=cart.find(item=>item.pid===4 && item.flavor===flavor);
+  if(existing){
+    existing.qty++;
+  } else {
+    cart.push({pid:4,nome:p.nome,emoji:p.e,preco:p.preco,qty:1,recheios:null,calda:null,flavor});
+  }
+  upBar();render();showToast();
+}
+
+function chS(pid,d){
+  const ex=cart.find(i=>i.pid===pid&&!i.recheios);if(!ex)return;
+  ex.qty=Math.max(0,ex.qty+d);
+  if(ex.qty===0){
+    cart.splice(cart.indexOf(ex),1);
+    document.getElementById('qc'+pid)?.classList.remove('s');
+    document.getElementById('ab'+pid)?.classList.remove('h');
+    const qn=document.getElementById('qn'+pid);if(qn)qn.textContent=0;
+  } else {
+    const qn=document.getElementById('qn'+pid);if(qn)qn.textContent=ex.qty;
+  }
+  upBar();
+}
+
+/* ── CART ── */
+function upBar(){
+  const n=cart.reduce((s,i)=>s+i.qty,0);
+  const t=cart.reduce((s,i)=>s+i.preco*i.qty,0);
+  const bar=document.getElementById('cb');
+  if(n>0){bar.classList.add('show');document.getElementById('cl').textContent=`${n} item${n>1?'s':''}`;document.getElementById('cv').textContent=fmt(t);}
+  else{bar.classList.remove('show');}
+}
+
+function openModal(){
+  if(!cart.length)return;
+  let html='',t=0;
+  cart.forEach(i=>{
+    const sub=i.preco*i.qty;t+=sub;
+    let extras='';
+    if(i.flavor){
+      extras=`Sabor: ${i.flavor}`;
+    }
+    if(i.cremes){
+      if(extras) extras+=` · `;
+      extras+=`Cremes: ${i.cremes.join(', ')} · Leite condensado incluso`;
+    }
+    if(i.recheios){
+      if(extras) extras+=` · `;
+      extras+=`Recheios: ${i.recheios.join(', ')}`;
+      if(i.calda) extras+=` · 🍓 Calda: ${i.calda} (+${fmt(CALDA_PRECO)})`;
+    }
+    html+=`<div class="mi">
+      <div class="mi-top">
+        <div class="mil"><span>${i.emoji}</span><span>${i.nome} × ${i.qty}</span></div>
+        <span class="mip">${fmt(sub)}</span>
+      </div>
+      ${extras?`<div class="mi-extras">${extras}</div>`:''}
+    </div>`;
+  });
+  document.getElementById('mb').innerHTML=html;
+  document.getElementById('mtv').textContent=fmt(t);
+  document.getElementById('ov').classList.add('show');
+}
+
+function cmo(e){if(e.target===document.getElementById('ov'))document.getElementById('ov').classList.remove('show');}
+
+function sendW(){
+  let msg='🎨 *Pedido - Fino Sabor*\n\n',t=0;
+  cart.forEach(i=>{
+    const sub=i.preco*i.qty;t+=sub;
+    msg+=`• ${i.emoji} ${i.nome} × ${i.qty} — ${fmt(sub)}\n`;
+    if(i.flavor)  msg+=`  🍦 Sabor: ${i.flavor}\n`;
+    if(i.cremes) msg+=`  🍨 Cremes: ${i.cremes.join(', ')} · Leite condensado incluso\n`;
+    if(i.recheios) msg+=`  🍫 Recheios: ${i.recheios.join(', ')}\n`;
+    if(i.calda)    msg+=`  🍓 Calda: ${i.calda} (+${fmt(CALDA_PRECO)})\n`;
+  });
+  msg+=`\n💰 *Total: ${fmt(t)}*\n\nOlá, gostaria de fazer esse pedido! 😊`;
+  window.open('https://wa.me/'+WN+'?text='+encodeURIComponent(msg),'_blank');
+}
+
+function showToast(){
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),1800);
+}
+
+function filter(c,btn){
+  catAtiva=c;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');render();
+}
+
+render();
+</script>
+</body>
+</html>
